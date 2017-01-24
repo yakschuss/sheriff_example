@@ -1,0 +1,25 @@
+.main-container {
+  background: 
+    linear-gradient(
+       rgba(170, 0, 0, 0.45),
+       rgba(170, 0, 0, 0.45)
+    ),
+    url('/images/marketing_background.jpg');
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+}
+
+
+.main-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .main-title {
+    color: $white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 60px;
+  }
+}
