@@ -7,8 +7,7 @@ defmodule SheriffExampleApp.Mixfile do
      elixir: "~> 1.2",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
+     build_embedded: Mix.env == :prod, start_permanent: Mix.env == :prod,
      aliases: aliases(),
      deps: deps()]
   end
@@ -19,7 +18,7 @@ defmodule SheriffExampleApp.Mixfile do
   def application do
     [mod: {SheriffExampleApp, []},
      applications: [:sheriff, :phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex]]
+                    :phoenix_ecto, :postgrex, :comeonin]]
   end
 
   # Specifies which paths to compile per environment.
@@ -30,16 +29,19 @@ defmodule SheriffExampleApp.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.2.1"},
+    [
+     {:comeonin, "~> 2.6"},
+     {:cowboy, "~> 1.0"},
+     {:gettext, "~> 0.11"},
+     {:guardian, "~> 0.14"},
+     {:phoenix, "~> 1.2.1"},
      {:phoenix_pubsub, "~> 1.0"},
-     {:sheriff, "~> 0.3"},
      {:phoenix_ecto, "~> 3.0"},
      {:postgrex, ">= 0.0.0"},
      {:phoenix_html, "~> 2.6"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:gettext, "~> 0.11"},
-     {:guardian, "~> 0.14"},
-     {:cowboy, "~> 1.0"}]
+     {:sheriff, "~> 0.3"},
+    ]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

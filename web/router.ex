@@ -14,13 +14,11 @@ defmodule SheriffExampleApp.Router do
   end
 
   scope "/", SheriffExampleApp do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :browser
+
+    resources "/users", UserController, only: [:new, :create]
+    resources "/sessions", SessionController, only: [:create, :delete, :new]
 
     get "/", PageController, :index
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", SheriffExampleApp do
-  #   pipe_through :api
-  # end
 end
