@@ -3,6 +3,8 @@ defmodule SheriffExampleApp.SessionController do
 
   use SheriffExampleApp.Web, :controller
 
+  alias SheriffExampleApp.User
+
   import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
 
   def new(conn, _params) do
@@ -11,15 +13,15 @@ defmodule SheriffExampleApp.SessionController do
 
   def create(conn, %{"session" => %{"email" => email, "password" => password}}) do
     case check_credentials(email, password) do
-			{:ok, user} ->
-				conn
-				|> put_flash(:info, "Signed In!")
-				|> redirect(to: administrator_page_path(conn, :index)
- 	    {:error, changeset} ->
+      {:ok, user} ->
+        conn
+        |> put_flash(:info, "Signed In!")
+        |> redirect(to: administrator_page_path(conn, :index))
+      {:error, changeset} ->
         conn
         |> put_flash(:error, "Invalid Credentials")
-				|> render("new.html")
-		end
+        |> render("new.html")
+    end
   end
 
   def delete(conn, _params) do
@@ -31,7 +33,7 @@ defmodule SheriffExampleApp.SessionController do
 
   defp check_credentials(email, password) when is_binary(email) and is_binary(password) do
     with {:ok, user} <- find_by_email(email),
-      do: verify_password(password, user)
+    do: verify_password(password, user)
   end
 
   defp find_by_email(email) when is_binary(email) do
