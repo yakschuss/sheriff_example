@@ -18,8 +18,13 @@ defmodule SheriffExampleApp.Router do
     plug Guardian.Plug.LoadResource
   end
 
-  pipeline :auth do
+  pipeline :authentication do
     plug Guardian.Plug.EnsureAuthenticated, handler: SheriffExampleApp.AuthHandler
+  end
+
+  pipeline :authorization do
+    plug Sheriff.Plug.LoadResource, loader: SheriffExampleApp.UserLoader
+    plug Sheriff.Plug.EnforceLaw, law: SheriffExampleApp.UserLaw, resource_key: :guardian_default_resource
   end
 
   scope "/", SheriffExampleApp do
@@ -32,8 +37,13 @@ defmodule SheriffExampleApp.Router do
   end
 
   scope "/logged_in", SheriffExampleApp.LoggedIn do
-    pipe_through [:browser,:browser_session, :auth]
+    pipe_through [:browser,:browser_session, :authentication]
 
     resources "/posts", PostController, only: [:index]
+
+    scope "/admin" do
+      pipe_through [:authorization]
+      resources "/secret_stuff", AuthorizedController, only: [:index]
+    end
   end
 end
