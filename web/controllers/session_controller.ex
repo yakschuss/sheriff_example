@@ -16,7 +16,8 @@ defmodule SheriffExampleApp.SessionController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "Signed In!")
-        |> redirect(to: administrator_page_path(conn, :index))
+        |> Guardian.Plug.sign_in(user)
+        |> redirect(to: post_path(conn, :index))
       {:error, changeset} ->
         conn
         |> put_flash(:error, "Invalid Credentials")
