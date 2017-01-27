@@ -23,3 +23,30 @@
     font-size: 60px;
   }
 }
+
+.sign-in {
+  display: flex;
+  justify-content: center;
+
+  .button {
+    background-color: white;
+    height: 60px;
+    margin: 20px;
+    width: 170px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 1000px;;
+    line-height: 60px;
+    font-size: 18px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+
+    &:hover {
+      background-color: #D88989;
+      color: white;
+      border: solid 0.5px white;
+    }
+  }
+}
