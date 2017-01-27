@@ -1,1 +1,8 @@
-<h1>Hi</h1>
+<div class="posts-index">
+  <h1 class="posts">User Posts</h1>
+
+
+  <div class="nav">
+    <%= link "See ALL the Users", to: authorized_path(@conn, :index), class: "button"  %>
+  </div>
+</div>

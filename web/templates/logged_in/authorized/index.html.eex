@@ -1,1 +1,7 @@
-Here the users are secretly assigned in the conn as `sheriff_resource` in the `conn.private` map
+<div class="secret-users">
+  <%= for user <- @users do %>
+    <div class="user">
+      <%= user.email %>
+    </div>
+  <% end %>
+</div>
