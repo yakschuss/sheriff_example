@@ -1,4 +1,7 @@
 <div class="secret-users">
+
+<%= link "Back", to: post_path(@conn, :index), class: "button" %>
+
   <%= for user <- @users do %>
     <div class="user">
       <%= user.email %>
