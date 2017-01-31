@@ -51,3 +51,13 @@
     border: solid 0.5px white;
   }
 }
+
+.select-form {
+  align-self: center;
+  margin: 25px;
+
+  select {
+    width: 175px;
+    height: 40px;
+  }
+}

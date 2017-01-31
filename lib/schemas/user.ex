@@ -8,6 +8,7 @@ defmodule SheriffExampleApp.User do
   schema "users" do
     field :email, :string
     field :password_hash, :string
+    field :admin, :boolean
 
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
@@ -18,7 +19,7 @@ defmodule SheriffExampleApp.User do
   @doc "Builds a changeset based on the `struct` and `params`."
   def register_changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:email, :password, :password_confirmation])
+    |> cast(params, [:email, :password, :password_confirmation, :admin])
     |> validate_required([:email, :password, :password_confirmation])
     |> validate_confirmation(:password)
     |> hash_password()

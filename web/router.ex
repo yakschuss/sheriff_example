@@ -37,7 +37,7 @@ defmodule SheriffExampleApp.Router do
   end
 
   scope "/logged_in", SheriffExampleApp.LoggedIn do
-    pipe_through [:browser,:browser_session, :authentication]
+    pipe_through [:browser, :browser_session, :authentication]
 
     resources "/posts", PostController, only: [:index]
 
